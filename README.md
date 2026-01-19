@@ -37,6 +37,24 @@
 
 Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwaha/stoppy-safari/).
 
+## 📥 Installation
+
+### Quick Install
+
+1. **[Download the latest release](https://github.com/suryanshkushwaha/stoppy-chromium/releases/download/v1.0.0/stoppy-v1.0.0.zip)** (stoppy-v1.0.0.zip)
+2. **Unzip** the file to a folder on your computer
+3. **Open your browser's extension page:**
+   - Chrome: `chrome://extensions`
+   - Edge: `edge://extensions`
+   - Brave: `brave://extensions`
+   - Arc: `arc://extensions`
+   - Opera: `opera://extensions`
+4. **Enable "Developer mode"** (toggle in the top-right corner)
+5. **Click "Load unpacked"** and select the unzipped stoppy folder
+6. **Done!** The Stoppy icon should appear in your toolbar
+
+> 💡 **Tip:** Pin the extension to your toolbar for quick access to settings.
+
 ## 🎬 How Stoppy Runs the Play
 1. You're watching Netflix and the episode ends.
 2. The "Next Episode" countdown appears.
