@@ -97,8 +97,8 @@ Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwah
 - Check extension storage permissions.
 - Toggle off/on once.
 
-## 🤝 Contributing
-Spotted a bug or have an idea? Open an issue or PR—friendly reviews await.
+## 🤝 Contributing & Feature Requests
+Looking to contribute? Check out the [Issues](https://github.com/suryanshkushwaha/stoppy-chromium/issues) tab for features in progress and bugs we're squashing. Have an idea? Open an issue—we'd love to hear it! 
 
 ## 📄 License
 MIT
