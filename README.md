@@ -73,7 +73,6 @@ Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwah
 
 **No redirect?**
 - Confirm the destination setting.
-- Custom URLs must start with `http://` or `https://`.
 - If Netflix tweaked their DOM, try a fresh tab and report an issue.
 
 **Settings not sticking?**
