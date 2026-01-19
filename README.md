@@ -1,7 +1,7 @@
 <div align="center">
   <img src="images/icon-256.png" alt="Stoppy logo" width="180">
   <h1>stoppy</h1>
-  <p><strong>skip the show, slay your day.</strong></p>
+  <p><strong>skip the next show, slay your day.</strong></p>
   <p>Kill Netflix autoplay at the buzzer, get a countdown, and bounce to somewhere better before the binge spiral begins.</p>
 </div>
 

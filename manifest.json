@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "stoppy",
     "version": "1.0",
-    "description": "Skip the show, slay your day.",
+    "description": "Skip the next show, slay your day.",
     "permissions": [
         "activeTab",
         "storage"
