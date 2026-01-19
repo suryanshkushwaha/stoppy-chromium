@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "stoppy",
+    "version": "1.0",
+    "description": "Skip the show, slay your day.",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "action": {
+            "default_popup": "popup.html",
+            "default_icon": {
+                "16": "images/icon-16.png",
+                "48": "images/icon-48.png",
+                "128": "images/icon-128.png"
+            }
+        },
+    "content_scripts": [
+        {
+            "js": [
+                "content.js"
+            ],
+            "matches": [
+                "*://*.netflix.com/*"
+            ]
+        }
+    ]
+}

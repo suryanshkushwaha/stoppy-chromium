@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+    <script type="module" src="popup.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="title">stoppy</h1>
+        <div class="tagline">skip the show, slay your day.</div>
+    </div>
+
+    <div class="toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="masterStatus" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="settings-box">
+        <span class="settings-title">▼ Settings</span>
+
+        <div class="settings-content">
+            <div class="section-label">Where should we redirect you?</div>
+            <div class="option-group">
+                <label class="radio-card">
+                    <input type="radio" name="dest" value="home" checked>
+                    <div class="radio-content">
+                        <div class="radio-title">🏠 Netflix Home</div>
+                        <div class="radio-description">Browse all shows and movies</div>
+                    </div>
+                </label>
+                <label class="radio-card">
+                    <input type="radio" name="dest" value="title">
+                    <div class="radio-content">
+                        <div class="radio-title">📺 Title Page</div>
+                        <div class="radio-description">Stay on the current show's page</div>
+                    </div>
+                </label>
+                <label class="radio-card">
+                    <input type="radio" name="dest" value="custom">
+                    <div class="radio-content">
+                        <div class="radio-title">🌐 Custom Website</div>
+                        <div class="radio-description">Go anywhere you want</div>
+                    </div>
+                </label>
+                <input type="text" id="customUrl" placeholder="your-next-task.com">
+            </div>
+
+            <div class="timer-section">
+                <div class="section-label">Redirect delay</div>
+                <div class="timer-row">
+                    <span class="timer-description">Wait before redirecting</span>
+                    <div class="timer-input-group">
+                        <input type="number" id="delay" value="5" min="0" max="60">
+                        <span class="timer-unit">seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">Kushwaha & Co.</div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
