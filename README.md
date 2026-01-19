@@ -1,81 +1,91 @@
-# 🛑 stoppy
+<div align="center">
+  <img src="images/icon-256.png" alt="Stoppy logo" width="180">
+  <h1>stoppy</h1>
+  <p><strong>skip the show, slay your day.</strong></p>
+  <p>Kill Netflix autoplay at the buzzer, get a countdown, and bounce to somewhere better before the binge spiral begins.</p>
+</div>
 
-> skip the show, slay your day.
+<div align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Privacy-Local%20Only-brightgreen?style=for-the-badge" alt="Privacy: Local Only">
+  <img src="https://img.shields.io/badge/Platform-Netflix-red?style=for-the-badge" alt="Platform: Netflix">
+  <img src="https://img.shields.io/badge/Browser-Chromium%20family-orange?style=for-the-badge&logo=google-chrome" alt="Chromium browsers supported">
+</div>
 
-**Stoppy** is a Chrome extension that takes control of Netflix's autoplay feature. When that "next episode" countdown appears, Stoppy kicks in and redirects you before you can fall down another binge rabbit hole. Because sometimes you need a little help saying no.
+<div align="center">
+  <a href="https://github.com/suryanshkushwaha/stoppy-safari"><img src="https://img.shields.io/badge/Safari%20users-Get%20stoppy--safari-0A84FF?style=for-the-badge&logo=safari" alt="Get stoppy-safari"></a>
+</div>
 
-## Why Stoppy?
-
-Netflix's autoplay is designed to keep you scrolling endlessly. Stoppy gives you back control by:
-
-- ⏱️ **Intercepting the autoplay countdown** — Catches Netflix right before it advances to the next episode
-- 🎯 **Flexible redirection** — Choose where you go: Netflix home, back to the title page, or any custom URL
-- ⏰ **Customizable delay** — Set how many seconds you want before the redirect happens (your last chance to change your mind)
-- 🎮 **Toggle on/off instantly** — Enable/disable in one click through the popup
-
-## How It Works
-
-### The Flow
-1. You're watching Netflix and an episode ends
-2. The "Next Episode" countdown appears in the corner
-3. Stoppy detects this and clicks "Watch Credits" to stop the autoplay
-4. A notification appears: *"Stoppy: Redirecting in 5s..."*
-5. You're redirected (or you can manually escape it)
-
-### Settings
-
-Click the Stoppy icon in your toolbar to access the popup:
-
-- **Master Status** — Toggle the extension on/off
-- **Delay** — How many seconds before redirect (1-60 seconds)
-- **Destination** — Where to go when triggered:
-  - 🏠 **Home** — Netflix browse page (default)
-  - 🎬 **Title** — Back to the show you were watching
-  - 🔗 **Custom** — Any URL you want (e.g., `productivity-app.com`, `your-gym-schedule.com`)
-
-## Configuration
-
-All settings are saved to Chrome local storage and persist across sessions. No servers, no tracking, just local storage.
-
-### Storage Keys
-- `enabled` — Extension enabled state (boolean)
-- `delay` — Redirect delay in seconds (number)
-- `destination` — Where to redirect: `'home'`, `'title'`, or `'custom'` (string)
-- `customUrl` — Custom redirect URL (string)
-
-## Features
-
-✅ Netflix-focused — Only runs on Netflix URLs
-✅ Lightweight — Minimal performance impact
-✅ Privacy-first — No data collection, all local storage
-✅ Customizable — 3 built-in destinations + custom URLs
-✅ Visual feedback — See the countdown before redirect
-✅ Graceful handling — Works with Netflix's current UI selectors
-
-## Troubleshooting
-
-**Extension not working?**
-- Check that it's enabled in the popup
-- Verify you're on a Netflix page (it only works on `netflix.com`)
-- Open DevTools (`Cmd+Option+I`) and check the console for errors
-
-**Redirect isn't happening?**
-- Confirm your destination is set correctly
-- If using custom URL, make sure it starts with `http://` or `https://`
-- Netflix may have updated their selectors—check if the issue exists in fresh tab
-
-**Settings not saving?**
-- Check Chrome extension storage permissions
-- Try disabling and re-enabling the extension
-
-## Contributing
-
-Found a bug? Have ideas? Feel free to open an issue or PR.
-
-## License
-
-MIT 
+**Stoppy** is a tiny, loud, zero-backend Chrome/Edge/Brave/Arc extension that body-checks Netflix's autoplay. When the "Next Episode" timer shows up, Stoppy taps the brakes, gives you a countdown, and punts you to somewhere better before the binge spiral begins.
 
 ---
 
-**Built with ❤️ and spite for Netflix's autoplay.**
+## ✨ Highlights
+- Stops Netflix autoplay at the exact countdown moment
+- Redirect anywhere: Netflix home, the current title, or any custom URL
+- Adjustable delay so you can change your mind mid-countdown
+- One-click master toggle in the popup
+- No accounts, no analytics, all local storage
+
+## 🌍 Browser Support
+- Chrome
+- Brave
+- Microsoft Edge
+- Opera
+- Arc
+- Any Chromium-based browser
+
+Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwaha/stoppy-safari/).
+
+## 🎬 How Stoppy Runs the Play
+1. You're watching Netflix and the episode ends.
+2. The "Next Episode" countdown appears.
+3. Stoppy hits "Watch Credits" to kill the autoplay.
+4. A toast shows: *"Stoppy: Redirecting in 5s..."*
+5. You get redirected to the spot you picked.
+
+## 🧭 Settings (popup)
+- **Master Status** — On/off instantly.
+- **Delay** — 1-60s before redirect.
+- **Destination** — Choose your exit:
+  - 🏠 **Home** — Netflix browse page (default)
+  - 🎬 **Title** — Back to the show you were on
+  - 🔗 **Custom** — Any URL (e.g. `productivity-app.com`, `your-gym-schedule.com`)
+
+## 🗄️ Storage Map
+- `enabled` — Boolean, is Stoppy on?
+- `delay` — Number, seconds before redirect
+- `destination` — `'home' | 'title' | 'custom'`
+- `customUrl` — String, where to go on custom
+
+## ✅ Features in Plain English
+- Netflix-only scope so nothing else is touched
+- Lightweight and fast
+- Privacy-first: 100% local storage, zero network calls
+- Visual countdown so you always know what's happening
+- Built to handle current Netflix UI selectors gracefully
+
+## 🛠️ Troubleshooting
+**Extension not working?**
+- Make sure it's enabled in the popup.
+- Verify you're on `netflix.com`.
+- Pop open DevTools (`Cmd+Option+I`) and check the console.
+
+**No redirect?**
+- Confirm the destination setting.
+- Custom URLs must start with `http://` or `https://`.
+- If Netflix tweaked their DOM, try a fresh tab and report an issue.
+
+**Settings not sticking?**
+- Check extension storage permissions.
+- Toggle off/on once.
+
+## 🤝 Contributing
+Spotted a bug or have an idea? Open an issue or PR—friendly reviews await.
+
+## 📄 License
+MIT
+
+---
+
+Built with pure spite for autoplay (and a little love for your free time).
