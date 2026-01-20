@@ -1,66 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
     <script src="../scripts/config.js"></script>
     <script type="module" src="index.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header">
-        <h1 class="title">stoppy</h1>
-        <div class="tagline">skip the next show, slay your day.</div>
+      <h1 class="title">stoppy</h1>
+      <div class="tagline">skip the next show, slay your day.</div>
     </div>
 
     <div class="toggle-container">
-        <span class="toggle-label left">OFF</span>
-        <label class="switch" aria-label="Master toggle">
-            <input type="checkbox" id="masterStatus" checked>
-            <span class="slider" aria-hidden="true"></span>
-        </label>
-        <span class="toggle-label right">ON</span>
+      <span class="toggle-label left">OFF</span>
+      <label class="switch" aria-label="Master toggle">
+        <input type="checkbox" id="masterStatus" checked />
+        <span class="slider" aria-hidden="true"></span>
+      </label>
+      <span class="toggle-label right">ON</span>
     </div>
 
     <!-- Stats Section -->
     <div class="stats-container">
-        <div class="stat-card">
-            <div class="stat-value" id="stats-watched">0s</div>
-            <div class="stat-label">Watched</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-card">
-            <div class="stat-value" id="stats-browsed">0s</div>
-            <div class="stat-label">Browsed</div>
-        </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stats-watched">0s</div>
+        <div class="stat-label">Watched</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-card">
+        <div class="stat-value" id="stats-browsed">0s</div>
+        <div class="stat-label">Browsed</div>
+      </div>
     </div>
 
     <div class="settings-box">
-        <span class="settings-title">▼ Settings</span>
+      <span class="settings-title">▼ Settings</span>
 
-        <div class="settings-content">
-            <div class="section-label">Where should we redirect you?</div>
-            <div class="option-group">
-                <input type="text" id="customUrl" placeholder="your-next-task.com">
-            </div>
-
-            <div class="timer-section">
-                <div class="section-label">Redirect delay</div>
-                <div class="timer-row">
-                    <span class="timer-description">Wait before redirecting</span>
-                    <div class="timer-input-group">
-                        <input type="number" id="delay" value="5" min="0" max="60">
-                        <span class="timer-unit">seconds</span>
-                    </div>
-                </div>
-            </div>
+      <div class="settings-content">
+        <div class="section-label">Where should we redirect you?</div>
+        <div class="option-group">
+          <input type="text" id="customUrl" placeholder="your-next-task.com" />
         </div>
+
+        <div class="timer-section">
+          <div class="section-label">Redirect delay</div>
+          <div class="timer-row">
+            <span class="timer-description">Wait before redirecting</span>
+            <div class="timer-input-group">
+              <input type="number" id="delay" value="5" min="0" max="60" />
+              <span class="timer-unit">seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="footer">Kushwaha & Co.</div>
 
     <script src="popup.js"></script>
-</body>
-
+  </body>
 </html>

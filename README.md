@@ -21,6 +21,7 @@
 ---
 
 ## ✨ Highlights
+
 - Stops Netflix autoplay at the exact countdown moment
 - Redirect anywhere: Netflix home, the current title, or any custom URL
 - Adjustable delay so you can change your mind mid-countdown
@@ -28,6 +29,7 @@
 - No accounts, no analytics, all local storage
 
 ## 🌍 Browser Support
+
 - Chrome
 - Brave
 - Microsoft Edge
@@ -56,13 +58,15 @@ Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwah
 > 💡 **Tip:** Pin the extension to your toolbar for quick access to settings.
 
 ## 🎬 How Stoppy Runs the Play
+
 1. You're watching Netflix and the episode ends.
 2. The "Next Episode" countdown appears.
 3. Stoppy hits "Watch Credits" to kill the autoplay.
-4. A toast shows: *"Stoppy: Redirecting in 5s..."*
+4. A toast shows: _"Stoppy: Redirecting in 5s..."_
 5. You get redirected to the spot you picked.
 
 ## 🧭 Settings (popup)
+
 - **Master Status** — On/off instantly.
 - **Delay** — 1-60s before redirect.
 - **Destination** — Choose your exit:
@@ -71,12 +75,14 @@ Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwah
   - 🔗 **Custom** — Any URL (e.g. `productivity-app.com`, `your-gym-schedule.com`)
 
 ## 🗄️ Storage Map
+
 - `enabled` — Boolean, is Stoppy on?
 - `delay` — Number, seconds before redirect
 - `destination` — `'home' | 'title' | 'custom'`
 - `customUrl` — String, where to go on custom
 
 ## ✅ Features in Plain English
+
 - Netflix-only scope so nothing else is touched
 - Lightweight and fast
 - Privacy-first: 100% local storage, zero network calls
@@ -84,23 +90,29 @@ Looking for Safari? Check out [stoppy-safari](https://github.com/suryanshkushwah
 - Built to handle current Netflix UI selectors gracefully
 
 ## 🛠️ Troubleshooting
+
 **Extension not working?**
+
 - Make sure it's enabled in the popup.
 - Verify you're on `netflix.com`.
 - Pop open DevTools (`Cmd+Option+I`) and check the console.
 
 **No redirect?**
+
 - Confirm the destination setting.
 - If Netflix tweaked their DOM, try a fresh tab and report an issue.
 
 **Settings not sticking?**
+
 - Check extension storage permissions.
 - Toggle off/on once.
 
 ## 🤝 Contributing & Feature Requests
-Looking to contribute? Check out the [Issues](https://github.com/suryanshkushwaha/stoppy-chromium/issues) tab for features in progress and bugs we're squashing. Have an idea? Open an issue—we'd love to hear it! 
+
+Looking to contribute? Check out the [Issues](https://github.com/suryanshkushwaha/stoppy-chromium/issues) tab for features in progress and bugs we're squashing. Have an idea? Open an issue—we'd love to hear it!
 
 ## 📄 License
+
 MIT
 
 ---

@@ -1,32 +1,27 @@
 {
-    "manifest_version": 3,
-    "name": "stoppy",
-    "version": "1.1",
-    "description": "Skip the next show, slay your day.",
-    "permissions": [
-        "activeTab",
-        "storage"
-    ],
-    "action": {
-        "default_popup": "popup/index.html",
-        "default_icon": {
-            "16": "images/icon-16.png",
-            "48": "images/icon-48.png",
-            "128": "images/icon-128.png"
-        }
-    },
-    "content_scripts": [
-        {
-            "js": [
-                "scripts/config.js",
-                "scripts/overlay.js",
-                "scripts/actions.js",
-                "features/time-tracker/index.js",
-                "scripts/content.js"
-            ],
-            "matches": [
-                "*://*.netflix.com/*"
-            ]
-        }
-    ]
+  "manifest_version": 3,
+  "name": "stoppy",
+  "version": "1.1",
+  "description": "Skip the next show, slay your day.",
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "scripts/config.js",
+        "scripts/overlay.js",
+        "scripts/actions.js",
+        "features/time-tracker/index.js",
+        "scripts/content.js"
+      ],
+      "matches": ["*://*.netflix.com/*"]
+    }
+  ]
 }
