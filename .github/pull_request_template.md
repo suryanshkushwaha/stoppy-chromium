@@ -1,7 +1,13 @@
 ## Description
+
+> [!IMPORTANT]  
+> Please create an issue before creating PR
+
 Fixes #(issue number)
 
-Summary of changes:
+Summary of changes: [Write here]
+
+Screenshots of changes: [Add here]
 
 ## Type of Change
 - [ ] Bug fix
@@ -14,8 +20,3 @@ Summary of changes:
 - [ ] No console errors
 - [ ] Settings persist correctly
 - [ ] Tested on Chrome/Edge/Brave
-
-## Screenshots
-- [ ] Added (if applicable)
-
-    Add screenshot here
