@@ -93,7 +93,7 @@ Stats reset automatically at midnight each day.
 
 ### Daily Episode Budget
 
-Set a maximum number of episodes you want to watch per day (1-30 episodes). Once you reach your limit:
+Set a maximum number of episodes you want to watch per day (1-20 episodes). Once you reach your limit:
 
 - The extension won't intercept the autoplay countdown
 - If you try to watch another episode, you'll be automatically redirected
