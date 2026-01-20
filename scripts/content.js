@@ -74,8 +74,105 @@
             isProcessing = false;
           }, initialDelay * 1000);
         } else {
-          // Under limit - just stop autoplay, no redirect
-          isProcessing = false;
+          // Under limit - show full screen warning with options
+          let timeLeft = 10;
+          let autoPlayTimeout;
+          
+          const handleContinue = () => {
+            // Clear countdown and allow next episode
+            clearInterval(countdownInterval);
+            clearTimeout(autoPlayTimeout);
+            StoppyOverlay.removeEpisodeWarning();
+            
+            // Trigger Netflix controls to appear by simulating mouse movement
+            const video = document.querySelector('video');
+            if (video) {
+              const mouseMoveEvent = new MouseEvent('mousemove', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+              });
+              video.dispatchEvent(mouseMoveEvent);
+              document.body.dispatchEvent(mouseMoveEvent);
+            }
+            
+            // Wait for controls to render, then click next button
+            setTimeout(() => {
+              const nextBtn = document.querySelector('[data-uia="control-next"]');
+              if (nextBtn) {
+                nextBtn.click();
+              } else {
+                // Fallback: try to find and click any next episode button
+                const playerControls = document.querySelector('[data-uia="controls-standard"]');
+                if (playerControls) {
+                  const nextButton = playerControls.querySelector('button[aria-label*="Next"]');
+                  if (nextButton) nextButton.click();
+                }
+              }
+              isProcessing = false;
+            }, 200);
+          };
+          
+          const handleCancel = () => {
+            // Clear countdown and redirect
+            clearInterval(countdownInterval);
+            clearTimeout(autoPlayTimeout);
+            StoppyOverlay.removeEpisodeWarning();
+            StoppyActions.redirect(settings.customUrl);
+            isProcessing = false;
+          };
+          
+          // Create full screen overlay with buttons
+          StoppyOverlay.createEpisodeWarning(
+            currentCount, 
+            episodeLimit, 
+            timeLeft, 
+            handleContinue, 
+            handleCancel
+          );
+          
+          // Countdown timer
+          countdownInterval = setInterval(() => {
+            timeLeft -= 1;
+            if (timeLeft > 0) {
+              StoppyOverlay.updateEpisodeWarning(timeLeft);
+            } else {
+              clearInterval(countdownInterval);
+            }
+          }, 1000);
+          
+          // Auto-continue after 10 seconds
+          autoPlayTimeout = setTimeout(() => {
+            StoppyOverlay.removeEpisodeWarning();
+            
+            // Trigger Netflix controls to appear by simulating mouse movement
+            const video = document.querySelector('video');
+            if (video) {
+              const mouseMoveEvent = new MouseEvent('mousemove', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+              });
+              video.dispatchEvent(mouseMoveEvent);
+              document.body.dispatchEvent(mouseMoveEvent);
+            }
+            
+            // Wait for controls to render, then click next button
+            setTimeout(() => {
+              const nextBtn = document.querySelector('[data-uia="control-next"]');
+              if (nextBtn) {
+                nextBtn.click();
+              } else {
+                // Fallback: try to find and click any next episode button
+                const playerControls = document.querySelector('[data-uia="controls-standard"]');
+                if (playerControls) {
+                  const nextButton = playerControls.querySelector('button[aria-label*="Next"]');
+                  if (nextButton) nextButton.click();
+                }
+              }
+              isProcessing = false;
+            }, 300);
+          }, 10000);
         }
       }
     });
