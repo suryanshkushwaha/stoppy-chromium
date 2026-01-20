@@ -16,7 +16,7 @@
   <a href="https://github.com/suryanshkushwaha/stoppy-safari"><img src="https://img.shields.io/badge/Safari%20users-Get%20stoppy--safari-0A84FF?style=for-the-badge&logo=safari" alt="Get stoppy-safari"></a>
 </div>
 
-**Stoppy** is a tiny, loud, zero-backend Chrome/Edge/Brave/Arc extension that body-checks Netflix's autoplay and helps you take control of your watch time. When the "Next Episode" timer shows up, Stoppy taps the brakes, gives you a countdown, and redirects you away. Plus, track your watching habits and set daily episode limits to stay mindful.
+**Stoppy** is a tiny, loud, zero-backend Chrome/Edge/Brave/Arc extension that body-checks Netflix's autoplay and helps you take control of your watch time. When the "Next Episode" timer shows up, Stoppy taps the brakes, gives you a countdown, and redirects you away. Plus, track your watching habits, set daily episode limits, and control video playback speed to stay mindful.
 
 ---
 
@@ -25,6 +25,7 @@
 - **Autoplay Interception** - Stops Netflix autoplay at the exact countdown moment
 - **Time Tracking** - See how much time you spend watching vs. browsing Netflix
 - **Daily Episode Budget** - Set a limit on episodes per day; get automatically redirected when you hit your limit
+- **Playback Speed Control** - Adjust video playback speed from 0.25x to 10x with persistent settings
 - **Custom Redirect** - Redirect to any URL after an episode ends (e.g., productivity app, gym schedule)
 - **Adjustable Delay** - Change the countdown timer (0-60 seconds) before redirect
 - **Real-time Stats** - View today's watched time, browsed time, and episode count in the popup
@@ -92,11 +93,23 @@ Stats reset automatically at midnight each day.
 
 ### Daily Episode Budget
 
-Set a maximum number of episodes you want to watch per day (1-20 episodes). Once you reach your limit:
+Set a maximum number of episodes you want to watch per day (1-30 episodes). Once you reach your limit:
 
 - The extension won't intercept the autoplay countdown
 - If you try to watch another episode, you'll be automatically redirected
 - Your counter resets at midnight
+
+### Playback Speed Control
+
+Control how fast or slow videos play on Netflix:
+
+- **Speed Range** - Adjust from 0.25x (slow motion) to 10x (ultra fast)
+- **Dual Controls** - Use the slider for quick adjustments or number input for precise speed
+- **Persistent Settings** - Your speed preference is saved and applies automatically to all videos
+- **Bidirectional Sync** - Changes sync between the extension popup and Netflix's built-in speed menu
+- **Continuous Enforcement** - Speed is maintained even if Netflix tries to reset it
+
+Perfect for speeding through content you want to watch quickly or slowing down for detailed viewing.
 
 ### Redirect Settings
 
@@ -111,6 +124,7 @@ Set a maximum number of episodes you want to watch per day (1-20 episodes). Once
 - `delay` — Number, seconds before redirect (default: 5)
 - `customUrl` — String, where to redirect after episodes
 - `episodeLimit` — Number, max episodes per day (default: 1)
+- `playbackSpeed` — Number, video playback speed multiplier (default: 1, range: 0.25-10)
 
 ### Time Tracking Data
 
@@ -137,6 +151,8 @@ All data is stored locally in your browser. Statistics automatically reset at mi
 - **Smart episode detection** — Only counts completed episodes (when autoplay countdown appears)
 - **Daily reset** — All stats and counters reset automatically at midnight
 - **Episode limit enforcement** — Automatically prevents watching beyond your daily budget
+- **Custom playback speeds** — Control video speed from 0.25x to 10x with persistent settings
+- **Bidirectional speed sync** — Extension and Netflix speed menus stay in sync
 - **Handles Netflix UI changes gracefully** — Built with current Netflix DOM selectors
 
 ## 🛠️ Troubleshooting
@@ -171,6 +187,13 @@ All data is stored locally in your browser. Statistics automatically reset at mi
 - Increase your episode limit in the settings
 - Or wait until midnight when the counter resets
 - Or temporarily disable Stoppy using the master toggle
+
+**Playback speed not working?**
+
+- Make sure you're on a Netflix watch page (`/watch/`)
+- Try refreshing the page to re-initialize the video element
+- Check that the video element has loaded (wait for video to appear)
+- Speed is continuously enforced every 500ms, so it should persist even if Netflix resets it
 
 ## 🤝 Contributing & Feature Requests
 
