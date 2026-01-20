@@ -6,10 +6,10 @@ const StoppyActions = {
 
         console.log(`stoppy: Executing redirect to ${target}`);
 
-        if (target) {
+
             // Check for http or https explicitly
             const finalUrl = /^https?:\/\//i.test(target) ? target : 'https://' + target;
             window.location.href = finalUrl;
-        }
+        
     }
 };

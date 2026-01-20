@@ -3,5 +3,5 @@ export const Store = {
     set: (data) => new Promise((resolve) => chrome.storage.local.set(data, resolve)),
 
     // Use the shared source of truth
-    DEFAULTS: window.StoppyConfig.DEFAULTS
+    DEFAULTS: StoppyConfig.DEFAULTS
 };

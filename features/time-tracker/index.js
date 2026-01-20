@@ -1,7 +1,6 @@
 const TimeTracker = {
     // Configuration
     STORAGE_KEY: 'stoppy_stats',
-    SAVE_INTERVAL_MS: 1000, // Save every second for live updates
 
     // State
     stats: {
@@ -66,7 +65,7 @@ const TimeTracker = {
     start() {
         const self = this;
         this.load().then(() => {
-            // Use arrow function to preserve 'this' context, or bind it directly
+            // Track and save every second
             setInterval(() => {
                 // Only track if tab is active/focused
                 if (!self.isActive()) return;
@@ -88,10 +87,10 @@ const TimeTracker = {
                     };
                 }
 
-            }, 1000);
+                // Save after each update
+                self.save();
 
-            // Periodically save to storage
-            setInterval(() => self.save(), self.SAVE_INTERVAL_MS);
+            }, 1000);
 
             // Save on exit
             window.addEventListener('beforeunload', () => self.save());

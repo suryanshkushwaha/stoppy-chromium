@@ -1,4 +1,4 @@
-window.StoppyConfig = {
+const StoppyConfig = {
     UI_SELECTORS: {
         timer: '[data-uia="next-episode-seamless-button-draining"]',
         stop: '[data-uia="watch-credits-seamless-button"]',
