@@ -20,6 +20,7 @@
         "scripts/actions.js",
         "features/time-tracker/index.js",
         "features/daily-quota/index.js",
+        "features/playback-speed/index.js",
         "scripts/content.js"
       ],
       "matches": ["*://*.netflix.com/*"]

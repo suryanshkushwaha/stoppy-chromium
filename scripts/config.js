@@ -8,5 +8,6 @@ const StoppyConfig = {
     enabled: true,
     delay: 5,
     episodeLimit: 1,
+    playbackSpeed: 1,
   },
 };

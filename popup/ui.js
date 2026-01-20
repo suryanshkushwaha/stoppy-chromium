@@ -4,6 +4,8 @@ export const UI = {
     delayInput: document.getElementById('delay'),
     customUrlInput: document.getElementById('customUrl'),
     episodeLimitInput: document.getElementById('episodeLimit'),
+    speedSlider: document.getElementById('speedSlider'),
+    speedInput: document.getElementById('speedInput'),
     settingsTitle: document.querySelector('.settings-title'),
     settingsContent: document.querySelector('.settings-content'),
   },
