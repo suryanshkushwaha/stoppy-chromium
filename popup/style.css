@@ -388,13 +388,14 @@ input:checked + .slider:before {
 .footer {
   margin-top: 25px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   font-size: 9px;
   letter-spacing: 1.5px;
   color: #404040;
   text-transform: uppercase;
-  gap: 20px;
+  gap: 4px;
 }
 
 .footer-links {
