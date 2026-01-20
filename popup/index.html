@@ -10,13 +10,13 @@
   <body>
     <div class="header">
       <h1 class="title">stoppy</h1>
-      <div class="tagline">skip the next show, slay your day.</div>
+      <div class="tagline">because you can't be trusted.</div>
     </div>
 
     <div class="toggle-container">
       <span class="toggle-label left">OFF</span>
-      <label class="switch" aria-label="Master toggle">
-        <input type="checkbox" id="masterStatus" checked />
+      <label class="switch no-transition" aria-label="Master toggle">
+        <input type="checkbox" id="masterStatus" />
         <span class="slider" aria-hidden="true"></span>
       </label>
       <span class="toggle-label right">ON</span>
@@ -33,15 +33,44 @@
         <div class="stat-value" id="stats-browsed">0s</div>
         <div class="stat-label">Browsed</div>
       </div>
+      <div class="stat-divider"></div>
+      <div class="stat-card">
+        <div class="stat-value" id="quota-display">
+          <span id="quota-count">0</span>/<span id="quota-limit">1</span>
+        </div>
+        <div class="stat-label">Episodes</div>
+      </div>
     </div>
 
     <div class="settings-box">
-      <span class="settings-title">▼ Settings</span>
+      <span class="settings-title">► Settings</span>
 
       <div class="settings-content">
-        <div class="section-label">Where should we redirect you?</div>
-        <div class="option-group">
-          <input type="text" id="customUrl" placeholder="your-next-task.com" />
+        <div class="section-label">Daily Episode Budget</div>
+        <div class="timer-row">
+          <span class="timer-description">Episode limit</span>
+          <div class="timer-input-group">
+            <input type="number" id="episodeLimit" value="1" min="1" max="20" />
+            <span class="timer-unit">episodes</span>
+          </div>
+        </div>
+
+        <div class="redirect-section">
+          <div class="section-label">Where should we redirect you?</div>
+          <div class="option-group">
+            <input type="text" id="customUrl" placeholder="your-calendar-link.com or smtg else" />
+          </div>
+        </div>
+
+        <div class="speed-section">
+          <div class="section-label">Playback Speed</div>
+          <div class="speed-controls">
+            <input type="range" id="speedSlider" min="0.25" max="10" step="0.25" value="1" />
+            <div class="speed-input-group">
+              <input type="number" id="speedInput" value="1" min="0.25" max="10" step="0.25" />
+              <span class="speed-unit">x</span>
+            </div>
+          </div>
         </div>
 
         <div class="timer-section">
@@ -57,7 +86,24 @@
       </div>
     </div>
 
-    <div class="footer">Kushwaha & Co.</div>
+    <div class="footer">
+      <div class="footer-links">
+        <a
+          href="https://github.com/suryanshkushwaha/stoppy-chromium/issues"
+          target="_blank"
+          class="footer-link"
+        >
+          <img src="../images/svg/bug.svg" class="footer-icon" alt="Bug icon" />
+          <span>Report</span>
+        </a>
+        <span class="footer-divider">•</span>
+        <a href="https://suryanshkushwaha.com/support" target="_blank" class="footer-link">
+          <img src="../images/svg/heart.svg" class="footer-icon" alt="Heart icon" />
+          <span>Support</span>
+        </a>
+      </div>
+      <div class="footer-brand">Kushwaha & Co.</div>
+    </div>
 
     <script src="popup.js"></script>
   </body>

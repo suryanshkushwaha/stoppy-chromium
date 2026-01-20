@@ -1,6 +1,6 @@
 const TimeTracker = {
   // Configuration
-  STORAGE_KEY: 'stoppy_stats',
+  STORAGE_KEY: 'stoppy_time_tracker',
 
   // State
   stats: {

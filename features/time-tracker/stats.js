@@ -1,5 +1,5 @@
 export const StatsDisplay = {
-  STORAGE_KEY: 'stoppy_stats',
+  STORAGE_KEY: 'stoppy_time_tracker',
 
   formatTime(seconds) {
     if (!seconds) return '0s';
