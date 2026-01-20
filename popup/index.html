@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <script src="../scripts/config.js"></script>
     <script type="module" src="index.js"></script>
 </head>
 
@@ -22,33 +23,25 @@
         <span class="toggle-label right">ON</span>
     </div>
 
+    <!-- Stats Section -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-value" id="stats-watched">0s</div>
+            <div class="stat-label">Watched</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+            <div class="stat-value" id="stats-browsed">0s</div>
+            <div class="stat-label">Browsed</div>
+        </div>
+    </div>
+
     <div class="settings-box">
         <span class="settings-title">▼ Settings</span>
 
         <div class="settings-content">
             <div class="section-label">Where should we redirect you?</div>
             <div class="option-group">
-                <label class="radio-card">
-                    <input type="radio" name="dest" value="home" checked>
-                    <div class="radio-content">
-                        <div class="radio-title">🏠 Netflix Home</div>
-                        <div class="radio-description">Browse all shows and movies</div>
-                    </div>
-                </label>
-                <label class="radio-card">
-                    <input type="radio" name="dest" value="title">
-                    <div class="radio-content">
-                        <div class="radio-title">📺 Title Page</div>
-                        <div class="radio-description">Stay on the current show's page</div>
-                    </div>
-                </label>
-                <label class="radio-card">
-                    <input type="radio" name="dest" value="custom">
-                    <div class="radio-content">
-                        <div class="radio-title">🌐 Custom Website</div>
-                        <div class="radio-description">Go anywhere you want</div>
-                    </div>
-                </label>
                 <input type="text" id="customUrl" placeholder="your-next-task.com">
             </div>
 
