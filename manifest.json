@@ -18,6 +18,9 @@
     "content_scripts": [
         {
             "js": [
+                "scripts/config.js",
+                "scripts/overlay.js",
+                "scripts/actions.js",
                 "scripts/content.js"
             ],
             "matches": [

@@ -247,7 +247,7 @@ input:checked+.slider:before {
     font-size: 12px;
     margin-top: 8px;
     border-radius: 6px;
-    display: none;
+    display: block;
     transition: all 0.2s ease;
     font-family: 'SF Mono', Monaco, monospace;
     box-sizing: border-box;
