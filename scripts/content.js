@@ -1,54 +1,54 @@
 (() => {
-    let isProcessing = false;
-    let countdownInterval;
+  let isProcessing = false;
+  let countdownInterval;
 
-    const handleIntercept = () => {
-        // Prevent "Extension context invalidated" error on reload
-        if (!chrome.runtime?.id) return;
+  const handleIntercept = () => {
+    // Prevent "Extension context invalidated" error on reload
+    if (!chrome.runtime?.id) return;
 
-        chrome.storage.local.get(['enabled', 'delay'], (settings) => {
-            if (chrome.runtime.lastError) return;
+    chrome.storage.local.get(['enabled', 'delay', 'customUrl'], (settings) => {
+      if (chrome.runtime.lastError) return;
 
-            const isEnabled = settings.enabled ?? true;
-            if (!isEnabled) return;
+      const isEnabled = settings.enabled ?? true;
+      if (!isEnabled) return;
 
-            const timerBtn = document.querySelector(StoppyConfig.UI_SELECTORS.timer);
-            // Ensure we don't start processing if already processing
-            const shouldIntercept = timerBtn && !isProcessing;
+      const timerBtn = document.querySelector(StoppyConfig.UI_SELECTORS.timer);
+      // Ensure we don't start processing if already processing
+      const shouldIntercept = timerBtn && !isProcessing;
 
-            if (shouldIntercept) {
-                isProcessing = true;
+      if (shouldIntercept) {
+        isProcessing = true;
 
-                // 1. Stop the Netflix advance
-                const watchCreditsBtn = document.querySelector(StoppyConfig.UI_SELECTORS.stop);
-                if (watchCreditsBtn) watchCreditsBtn.click();
+        // 1. Stop the Netflix advance
+        const watchCreditsBtn = document.querySelector(StoppyConfig.UI_SELECTORS.stop);
+        if (watchCreditsBtn) watchCreditsBtn.click();
 
-                // 2. Start Visual Countdown
-                // Capture the initial delay for the timeout
-                const initialDelay = settings.delay ?? StoppyConfig.DEFAULTS.delay;
-                let timeLeft = initialDelay;
+        // 2. Start Visual Countdown
+        // Capture the initial delay for the timeout
+        const initialDelay = settings.delay ?? StoppyConfig.DEFAULTS.delay;
+        let timeLeft = initialDelay;
 
-                const overlay = StoppyOverlay.create(timeLeft);
+        const overlay = StoppyOverlay.create(timeLeft);
 
-                countdownInterval = setInterval(() => {
-                    timeLeft -= 1;
-                    if (timeLeft > 0) {
-                        StoppyOverlay.update(overlay, timeLeft);
-                    } else {
-                        clearInterval(countdownInterval);
-                        StoppyOverlay.remove(overlay);
-                    }
-                }, 1000);
+        countdownInterval = setInterval(() => {
+          timeLeft -= 1;
+          if (timeLeft > 0) {
+            StoppyOverlay.update(overlay, timeLeft);
+          } else {
+            clearInterval(countdownInterval);
+            StoppyOverlay.remove(overlay);
+          }
+        }, 1000);
 
-                // 3. Execute Redirect
-                setTimeout(() => {
-                    StoppyActions.redirect(settings.customUrl);
-                    isProcessing = false;
-                }, initialDelay * 1000);
-            }
-        });
-    };
+        // 3. Execute Redirect
+        setTimeout(() => {
+          StoppyActions.redirect(settings.customUrl);
+          isProcessing = false;
+        }, initialDelay * 1000);
+      }
+    });
+  };
 
-    const observer = new MutationObserver(() => handleIntercept());
-    observer.observe(document.body, { childList: true, subtree: true });
+  const observer = new MutationObserver(() => handleIntercept());
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
