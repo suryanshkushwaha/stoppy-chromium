@@ -1,5 +1,6 @@
 import { Store } from './store.js';
 import { UI } from './ui.js';
+import { StatsDisplay } from '../features/stats.js';
 
 // State
 let settingsExpanded = true;
@@ -15,6 +16,9 @@ const init = async () => {
 
     // Set initial height for transition
     UI.elements.settingsContent.style.maxHeight = UI.elements.settingsContent.scrollHeight + 'px';
+
+    // Render Stats
+    StatsDisplay.init();
 };
 
 // Event Listeners
