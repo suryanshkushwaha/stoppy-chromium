@@ -382,11 +382,72 @@ input:checked + .slider:before {
 
 .footer {
   margin-top: 25px;
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 1.5px;
   color: #404040;
   text-transform: uppercase;
+  gap: 20px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.footer-link:hover {
+  color: var(--text-main);
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+.footer-icon {
+  width: 11px;
+  height: 11px;
+  display: block;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.footer-link:hover .footer-icon {
+  opacity: 1;
+}
+
+.footer-divider {
+  color: var(--border);
+  font-size: 8px;
+  user-select: none;
+  margin: 0;
+}
+
+.footer-brand {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #404040;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 @media (prefers-color-scheme: dark) {
