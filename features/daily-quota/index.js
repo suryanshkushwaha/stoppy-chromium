@@ -48,7 +48,7 @@ const DailyQuota = {
 
   async increment() {
     await this.load();
-    
+
     // Check for day change
     const today = this.getDateString();
     if (this.quota.date !== today) {

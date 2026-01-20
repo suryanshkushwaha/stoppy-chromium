@@ -8,22 +8,28 @@ let settingsExpanded = false;
 
 // Initialize
 const init = async () => {
-  const settings = await Store.get(['enabled', 'delay', 'customUrl', 'episodeLimit', 'playbackSpeed']);
+  const settings = await Store.get([
+    'enabled',
+    'delay',
+    'customUrl',
+    'episodeLimit',
+    'playbackSpeed',
+  ]);
 
   // Set toggle state immediately without transition
   const toggleChecked = settings.enabled ?? Store.DEFAULTS.enabled;
   UI.elements.statusToggle.checked = toggleChecked;
-  
+
   // Remove no-transition class after state is set to enable future transitions
   setTimeout(() => {
     document.querySelector('.switch').classList.remove('no-transition');
   }, 50);
-  
+
   // Populate UI
   UI.elements.delayInput.value = settings.delay ?? Store.DEFAULTS.delay;
   UI.elements.customUrlInput.value = settings.customUrl ?? '';
   UI.elements.episodeLimitInput.value = settings.episodeLimit ?? Store.DEFAULTS.episodeLimit;
-  
+
   // Set playback speed (both slider and input)
   const playbackSpeed = settings.playbackSpeed ?? Store.DEFAULTS.playbackSpeed;
   UI.elements.speedSlider.value = playbackSpeed;
@@ -32,7 +38,7 @@ const init = async () => {
   // Check if this is the first time opening the extension
   const hasVisited = localStorage.getItem('stoppy-has-visited');
   const savedSettingsState = localStorage.getItem('stoppy-settings-expanded');
-  
+
   if (!hasVisited) {
     // First time - open settings and mark as visited
     settingsExpanded = true;
@@ -42,14 +48,14 @@ const init = async () => {
     // Use saved state
     settingsExpanded = savedSettingsState === 'true';
   }
-  
+
   // Apply the settings state
   UI.toggleSettings(settingsExpanded);
 
   // Render Stats
   StatsDisplay.init();
   QuotaDisplay.init();
-  
+
   // Listen for storage changes (e.g., speed updated from Netflix UI)
   chrome.storage.onChanged.addListener((changes) => {
     if (changes.playbackSpeed) {
@@ -94,11 +100,11 @@ UI.elements.speedSlider.addEventListener('input', () => {
 
 UI.elements.speedInput.addEventListener('input', () => {
   let speed = parseFloat(UI.elements.speedInput.value);
-  
+
   // Clamp value between min and max
   if (speed < 0.25) speed = 0.25;
   if (speed > 10) speed = 10;
-  
+
   UI.elements.speedSlider.value = speed;
   UI.elements.speedInput.value = speed;
   Store.set({ playbackSpeed: speed });

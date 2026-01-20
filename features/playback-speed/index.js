@@ -79,13 +79,13 @@ const PlaybackSpeed = {
   // Apply speed to video element
   applySpeed(speed) {
     if (!this.video) return;
-    
+
     this.isApplyingSpeed = true;
     this.video.playbackRate = speed;
     this.currentSpeed = speed;
-    
+
     console.log('stoppy: Applied playback speed', speed);
-    
+
     // Reset flag after a short delay
     setTimeout(() => {
       this.isApplyingSpeed = false;
@@ -95,19 +95,19 @@ const PlaybackSpeed = {
   // Find and attach to video element
   findAndAttachVideo() {
     const video = document.querySelector('video');
-    
+
     if (video && video !== this.video) {
       this.video = video;
       console.log('stoppy: Video element found');
-      
+
       // Apply stored speed immediately
-      this.getStoredSpeed().then(speed => {
+      this.getStoredSpeed().then((speed) => {
         this.applySpeed(speed);
       });
 
       // Also apply speed when video starts playing
       video.addEventListener('playing', () => {
-        this.getStoredSpeed().then(speed => {
+        this.getStoredSpeed().then((speed) => {
           if (Math.abs(video.playbackRate - speed) > 0.01) {
             this.applySpeed(speed);
           }
@@ -116,7 +116,7 @@ const PlaybackSpeed = {
 
       // Apply when video is loaded
       video.addEventListener('loadedmetadata', () => {
-        this.getStoredSpeed().then(speed => {
+        this.getStoredSpeed().then((speed) => {
           this.applySpeed(speed);
         });
       });
@@ -124,7 +124,7 @@ const PlaybackSpeed = {
       // Continuously enforce speed every 500ms (in case Netflix resets it)
       setInterval(() => {
         if (!this.isApplyingSpeed && this.video) {
-          this.getStoredSpeed().then(speed => {
+          this.getStoredSpeed().then((speed) => {
             if (Math.abs(this.video.playbackRate - speed) > 0.01) {
               this.applySpeed(speed);
             }
