@@ -84,33 +84,35 @@
             clearTimeout(autoPlayTimeout);
             StoppyOverlay.removeEpisodeWarning();
             
-            // Trigger Netflix controls to appear by simulating mouse movement
-            const video = document.querySelector('video');
-            if (video) {
-              const mouseMoveEvent = new MouseEvent('mousemove', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-              });
-              video.dispatchEvent(mouseMoveEvent);
-              document.body.dispatchEvent(mouseMoveEvent);
-            }
-            
-            // Wait for controls to render, then click next button
+            // Wait for overlay to be removed, then click video and start mouse movement/polling
             setTimeout(() => {
-              const nextBtn = document.querySelector('[data-uia="control-next"]');
-              if (nextBtn) {
-                nextBtn.click();
+              const video = document.querySelector('video');
+              if (video) {
+                // Click on video first to ensure it's focused
+                video.click();
+                video.focus();
+                
+                // Simultaneously poll for the next button
+                const pollInterval = setInterval(() => {
+                  const nextBtn = document.querySelector('[data-uia="control-next"]');
+                  if (nextBtn) {
+                    clearInterval(pollInterval);
+
+                    nextBtn.click();
+                    isProcessing = false;
+                  }
+                }, 100);
+                
+                // Safety timeout to prevent infinite polling and movement
+                setTimeout(() => {
+                  clearInterval(pollInterval);
+
+                  isProcessing = false;
+                }, 5000);
               } else {
-                // Fallback: try to find and click any next episode button
-                const playerControls = document.querySelector('[data-uia="controls-standard"]');
-                if (playerControls) {
-                  const nextButton = playerControls.querySelector('button[aria-label*="Next"]');
-                  if (nextButton) nextButton.click();
-                }
+                isProcessing = false;
               }
-              isProcessing = false;
-            }, 200);
+            }, 100); // Wait 100ms for overlay removal
           };
           
           const handleCancel = () => {
@@ -143,35 +145,7 @@
           
           // Auto-continue after 10 seconds
           autoPlayTimeout = setTimeout(() => {
-            StoppyOverlay.removeEpisodeWarning();
-            
-            // Trigger Netflix controls to appear by simulating mouse movement
-            const video = document.querySelector('video');
-            if (video) {
-              const mouseMoveEvent = new MouseEvent('mousemove', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-              });
-              video.dispatchEvent(mouseMoveEvent);
-              document.body.dispatchEvent(mouseMoveEvent);
-            }
-            
-            // Wait for controls to render, then click next button
-            setTimeout(() => {
-              const nextBtn = document.querySelector('[data-uia="control-next"]');
-              if (nextBtn) {
-                nextBtn.click();
-              } else {
-                // Fallback: try to find and click any next episode button
-                const playerControls = document.querySelector('[data-uia="controls-standard"]');
-                if (playerControls) {
-                  const nextButton = playerControls.querySelector('button[aria-label*="Next"]');
-                  if (nextButton) nextButton.click();
-                }
-              }
-              isProcessing = false;
-            }, 300);
+            handleContinue();
           }, 10000);
         }
       }
