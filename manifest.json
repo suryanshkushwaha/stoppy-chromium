@@ -21,7 +21,7 @@
                 "scripts/config.js",
                 "scripts/overlay.js",
                 "scripts/actions.js",
-                "features/time-tracker.js",
+                "features/time-tracker/index.js",
                 "scripts/content.js"
             ],
             "matches": [

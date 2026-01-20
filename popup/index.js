@@ -1,6 +1,6 @@
 import { Store } from './store.js';
 import { UI } from './ui.js';
-import { StatsDisplay } from '../features/stats.js';
+import { StatsDisplay } from '../features/time-tracker/stats.js';
 
 // State
 let settingsExpanded = true;
