@@ -3,7 +3,12 @@
     let countdownInterval;
 
     const handleIntercept = () => {
+        // Prevent "Extension context invalidated" error on reload
+        if (!chrome.runtime?.id) return;
+
         chrome.storage.local.get(['enabled', 'delay'], (settings) => {
+            if (chrome.runtime.lastError) return;
+
             const isEnabled = settings.enabled ?? true;
             if (!isEnabled) return;
 

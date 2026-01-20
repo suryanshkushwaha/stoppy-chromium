@@ -13,14 +13,32 @@ const TimeTracker = {
     // Helpers
     getDateString: () => new Date().toLocaleDateString(),
 
-    isWatching: () => window.location.pathname.includes('/watch/'),
+    isWatching: () => {
+        // Must be on watch URL AND content must be playing
+        if (!window.location.pathname.includes('/watch/')) return false;
 
-    isActive: () => document.hasFocus() && !document.hidden,
+        const video = document.querySelector('video');
+        // Check if video exists, is playing, and has data
+        return video && !video.paused && !video.ended && video.readyState > 2;
+    },
+
+    // Browsing is defined as NOT being on the watch page
+    isBrowsing: () => !window.location.pathname.includes('/watch/'),
+
+    isActive: () => (document.hasFocus() && !document.hidden),
 
     // Methods
     async load() {
         return new Promise(resolve => {
+            if (!chrome.runtime?.id) {
+                resolve();
+                return;
+            }
             chrome.storage.local.get([this.STORAGE_KEY], (result) => {
+                if (chrome.runtime.lastError) {
+                    resolve();
+                    return;
+                }
                 const data = result[this.STORAGE_KEY];
                 const today = this.getDateString();
 
@@ -41,25 +59,29 @@ const TimeTracker = {
     },
 
     save() {
+        if (!chrome.runtime?.id) return;
         chrome.storage.local.set({ [this.STORAGE_KEY]: this.stats });
     },
 
     start() {
+        const self = this;
         this.load().then(() => {
+            // Use arrow function to preserve 'this' context, or bind it directly
             setInterval(() => {
                 // Only track if tab is active/focused
-                if (!this.isActive()) return;
+                if (!self.isActive()) return;
 
-                if (this.isWatching()) {
-                    this.stats.watchedSeconds++;
-                } else {
-                    this.stats.browsedSeconds++;
+                if (self.isWatching()) {
+                    self.stats.watchedSeconds++;
+                } else if (self.isBrowsing()) {
+                    self.stats.browsedSeconds++;
                 }
+                // If on /watch/ but paused/locked, we track nothing
 
                 // Check for day change
-                const today = this.getDateString();
-                if (this.stats.date !== today) {
-                    this.stats = {
+                const today = self.getDateString();
+                if (self.stats.date !== today) {
+                    self.stats = {
                         date: today,
                         watchedSeconds: 0,
                         browsedSeconds: 0
@@ -69,10 +91,10 @@ const TimeTracker = {
             }, 1000);
 
             // Periodically save to storage
-            setInterval(() => this.save(), this.SAVE_INTERVAL_MS);
+            setInterval(() => self.save(), self.SAVE_INTERVAL_MS);
 
             // Save on exit
-            window.addEventListener('beforeunload', () => this.save());
+            window.addEventListener('beforeunload', () => self.save());
         });
     }
 };
