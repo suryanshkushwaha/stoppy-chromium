@@ -16,8 +16,8 @@
     const episodeLimit = settings.episodeLimit ?? StoppyConfig.DEFAULTS.episodeLimit;
     const currentCount = await DailyQuota.getCount();
 
-    // If limit exceeded and user is on watch page, redirect them immediately
-    if (currentCount > episodeLimit && window.location.pathname.includes('/watch/')) {
+    // If limit reached/exceeded and user is on watch page, redirect them immediately
+    if (currentCount >= episodeLimit && window.location.pathname.includes('/watch/')) {
       StoppyActions.redirect(settings.customUrl);
     }
   };
@@ -40,14 +40,9 @@
         // Increment episode count first
         await DailyQuota.increment();
         
-        // Check if we've now reached or exceeded the limit
+        // Check current count against limit
         const episodeLimit = settings.episodeLimit ?? StoppyConfig.DEFAULTS.episodeLimit;
         const currentCount = await DailyQuota.getCount();
-        
-        // Only intercept if we're at or below the limit (redirect on hitting limit)
-        if (currentCount > episodeLimit) {
-          return; // Already exceeded limit, don't intercept
-        }
         
         isProcessing = true;
 
@@ -55,28 +50,33 @@
         const watchCreditsBtn = document.querySelector(StoppyConfig.UI_SELECTORS.stop);
         if (watchCreditsBtn) watchCreditsBtn.click();
 
-        // 2. Start Visual Countdown
-        // Capture the initial delay for the timeout
-        const initialDelay = settings.delay ?? StoppyConfig.DEFAULTS.delay;
-        let timeLeft = initialDelay;
+        // 2. Check if limit is reached/exceeded
+        if (currentCount >= episodeLimit) {
+          // Limit reached - redirect immediately with countdown
+          const initialDelay = settings.delay ?? StoppyConfig.DEFAULTS.delay;
+          let timeLeft = initialDelay;
 
-        const overlay = StoppyOverlay.create(timeLeft);
+          const overlay = StoppyOverlay.create(timeLeft);
 
-        countdownInterval = setInterval(() => {
-          timeLeft -= 1;
-          if (timeLeft > 0) {
-            StoppyOverlay.update(overlay, timeLeft);
-          } else {
-            clearInterval(countdownInterval);
-            StoppyOverlay.remove(overlay);
-          }
-        }, 1000);
+          countdownInterval = setInterval(() => {
+            timeLeft -= 1;
+            if (timeLeft > 0) {
+              StoppyOverlay.update(overlay, timeLeft);
+            } else {
+              clearInterval(countdownInterval);
+              StoppyOverlay.remove(overlay);
+            }
+          }, 1000);
 
-        // 3. Execute Redirect
-        setTimeout(() => {
-          StoppyActions.redirect(settings.customUrl);
+          // Execute Redirect
+          setTimeout(() => {
+            StoppyActions.redirect(settings.customUrl);
+            isProcessing = false;
+          }, initialDelay * 1000);
+        } else {
+          // Under limit - just stop autoplay, no redirect
           isProcessing = false;
-        }, initialDelay * 1000);
+        }
       }
     });
   };
