@@ -158,9 +158,13 @@
   const observer = new MutationObserver(() => handleIntercept());
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Enforce ban continuously - check every 2 seconds if user tries to watch
-  setInterval(checkAndEnforceBan, 2000);
-
-  // Also check on page load
-  checkAndEnforceBan();
+  // Enforce ban continuously - check every 2 seconds if user tries to watch (only if enabled)
+  chrome.storage.local.get(['enabled'], (settings) => {
+    const isEnabled = settings.enabled ?? true;
+    if (isEnabled) {
+      setInterval(checkAndEnforceBan, 2000);
+      // Also check on page load
+      checkAndEnforceBan();
+    }
+  });
 })();
