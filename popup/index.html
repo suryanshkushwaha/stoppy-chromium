@@ -33,15 +33,31 @@
         <div class="stat-value" id="stats-browsed">0s</div>
         <div class="stat-label">Browsed</div>
       </div>
+      <div class="stat-divider"></div>
+      <div class="stat-card">
+        <div class="stat-value" id="quota-display"><span id="quota-count">0</span>/<span id="quota-limit">1</span></div>
+        <div class="stat-label">Episodes</div>
+      </div>
     </div>
 
     <div class="settings-box">
       <span class="settings-title">▼ Settings</span>
 
       <div class="settings-content">
-        <div class="section-label">Where should we redirect you?</div>
+        <div class="section-label">Daily Episode Budget</div>
+        <div class="timer-row">
+          <span class="timer-description">Episode limit</span>
+          <div class="timer-input-group">
+            <input type="number" id="episodeLimit" value="1" min="1" max="20" />
+            <span class="timer-unit">episodes</span>
+          </div>
+        </div>
+
+        <div class="redirect-section">
+          <div class="section-label">Where should we redirect you?</div>
         <div class="option-group">
           <input type="text" id="customUrl" placeholder="your-next-task.com" />
+        </div>
         </div>
 
         <div class="timer-section">

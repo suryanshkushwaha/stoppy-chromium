@@ -3,6 +3,7 @@ export const UI = {
     statusToggle: document.getElementById('masterStatus'),
     delayInput: document.getElementById('delay'),
     customUrlInput: document.getElementById('customUrl'),
+    episodeLimitInput: document.getElementById('episodeLimit'),
     settingsTitle: document.querySelector('.settings-title'),
     settingsContent: document.querySelector('.settings-content'),
   },

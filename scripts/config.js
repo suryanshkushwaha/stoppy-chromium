@@ -7,5 +7,6 @@ const StoppyConfig = {
   DEFAULTS: {
     enabled: true,
     delay: 5,
+    episodeLimit: 1,
   },
 };
