@@ -3,13 +3,18 @@ const StoppyOverlay = {
     const div = document.createElement('div');
     div.id = 'stoppy-overlay';
     div.style = `
-             position: fixed; top: 10%; right: 20px; z-index: 9999;
+             position: fixed; top: 10%; right: 20px; z-index: 99999;
              background: rgba(0, 0, 0, 0.9); color: white; padding: 15px 25px;
              border-left: 4px solid #e50914; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
              border-radius: 4px; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.6);
          `;
     div.innerText = `stoppy: Redirecting in ${seconds}s...`;
-    document.body.appendChild(div);
+    
+    // Append to fullscreen element if in fullscreen, otherwise to body
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+    const container = fullscreenElement || document.body;
+    container.appendChild(div);
+    
     return div;
   },
 
@@ -34,7 +39,7 @@ const StoppyOverlay = {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.95);
-      z-index: 99999;
+      z-index: 2147483647;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -124,7 +129,11 @@ const StoppyOverlay = {
     content.appendChild(buttonContainer);
     overlay.appendChild(content);
     
-    document.body.appendChild(overlay);
+    // Append to fullscreen element if in fullscreen, otherwise to body
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+    const container = fullscreenElement || document.body;
+    container.appendChild(overlay);
+    
     return overlay;
   },
 
