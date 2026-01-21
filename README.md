@@ -1,7 +1,5 @@
 <div align="center">
-  <video src="demos/workingdemo_v1.2.0_22Jan26.mp4" width="100%" controls autoplay loop muted>
-    Your browser does not support the video tag.
-  </video>
+  <img src="demos/workingdemo_v1.2.0_22Jan26.gif" alt="Stoppy Demo">
 </div>
 
 <table style="margin-top: 30px;">
