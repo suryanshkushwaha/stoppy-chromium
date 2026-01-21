@@ -1,9 +1,20 @@
 <div align="center">
-  <img src="images/icon-256.png" alt="Stoppy logo" width="180">
+  <video src="demos/workingdemo_v1.2.0_22Jan26.mp4" width="100%" controls autoplay loop muted>
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<table style="margin-top: 30px;">
+<tr>
+<td>
+  <img src="images/icon-96.png" alt="Stoppy logo">
+</td>
+<td>
   <h1>stoppy</h1>
   <p><strong>because you can't be trusted.</strong></p>
-  <p>Kill Netflix autoplay at the buzzer, track your watch time, set daily limits, and bounce to somewhere better before the binge spiral begins.</p>
-</div>
+</td>
+</tr>
+</table>
 
 <div align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License: MIT"></a>
